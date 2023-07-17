@@ -47,7 +47,7 @@ class CategoryImageGenerationCronJob extends Job
         if ($queueEntry->taskLimit == 0) {
             $this->logger->info('Category-Image-Generation-CronJob: finished');
 
-            Shop::Cache()->flushTags(\CACHING_GROUP_CATEGORY);
+            Shop::Container()->getCache()->flushTags(\CACHING_GROUP_CATEGORY);
             $this->setFinished(true);
         } else {
             $this->logger->info(\sprintf('Category-Image-Generation-CronJob: chunk processed - %s categories in queue', $queueEntry->taskLimit));

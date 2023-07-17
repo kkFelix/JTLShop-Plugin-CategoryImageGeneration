@@ -93,6 +93,7 @@ class Bootstrap extends Bootstrapper
     public function renderAdminMenuTab(string $tabName, int $menuID, JTLSmarty $smarty): string
     {
         $plugin = $this->getPlugin();
+        $smarty->assign('menuID', $menuID);
 
         if ($tabName === 'Bild neu generieren (einzeln)') {
             return RegenerateCategoryImageTab::handleRequest($plugin, $this->getDB(), $smarty);

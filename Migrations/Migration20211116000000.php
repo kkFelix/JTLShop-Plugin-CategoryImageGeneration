@@ -34,9 +34,13 @@ class Migration20211116000000 extends Migration implements IMigration
     public function up()
     {
         // move offset-ratio-placement strategies to the new splitted values for each ratio
-        $ratioSettingRow = $this->getDB()->select('tplugineinstellungen', 'cName', 't4it_category_image_generation-categoryImageRatio');
+        $ratioSettingRow = $this->getDB()->select(
+            'tplugineinstellungen',
+            'cName',
+            't4it_category_image_generation-categoryImageRatio'
+        );
 
-        if($ratioSettingRow->cWert == '1:1'){
+        if ($ratioSettingRow !== null && $ratioSettingRow->cWert === '1:1'){
             // remove flipped-offset sample strategy -> migrate to normal 'offset'
             $this->getDB()->executeQueryPrepared(self::SQL_FIX_INITIAL_PLUGIN_CONFIG_VALUE, [
                 'wert' => OffsetRatio1to1OneProductImagePlacementStrategy::getCode(),

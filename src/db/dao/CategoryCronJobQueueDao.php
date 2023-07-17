@@ -2,7 +2,7 @@
 
 namespace Plugin\t4it_category_image_generation\src\db\dao;
 
-use DbInterface;
+use JTL\DB\DbInterface;
 use JTL\DB\ReturnType;
 use Plugin\t4it_category_image_generation\src\db\entity\Category;
 

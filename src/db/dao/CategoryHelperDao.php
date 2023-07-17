@@ -2,7 +2,7 @@
 
 namespace Plugin\t4it_category_image_generation\src\db\dao;
 
-use DbInterface;
+use JTL\DB\DbInterface;
 use JTL\DB\ReturnType;
 use Plugin\t4it_category_image_generation\src\db\entity\Category;
 use Plugin\t4it_category_image_generation\src\db\entity\Image;
@@ -166,7 +166,7 @@ class CategoryHelperDao
                     AND LOWER(b.cPfad) REGEXP \'^.*(.png|.jpeg|.jpg|.gif)$\'
                 JOIN tkategorieartikel ka ON ka.kArtikel = a.kArtikel
                 WHERE
-                    ka.kKategorie IN (' . join(',', $relevantCategoryIds) . ')
+                    ka.kKategorie IN (' . implode(',', $relevantCategoryIds) . ')
                 ORDER BY RAND()
                 LIMIT ' . $maxArticleImages . '
         ',

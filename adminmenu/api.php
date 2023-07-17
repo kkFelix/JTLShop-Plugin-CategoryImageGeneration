@@ -4,6 +4,7 @@ use JTL\Catalog\Category\Kategorie;
 use JTL\DB\ReturnType;
 use JTL\Helpers\Category as CategoryHelper;
 use JTL\Helpers\Form;
+use JTL\Shop;
 
 if (!defined('PFAD_ROOT')) {
     require_once __DIR__ . '/../../../admin/includes/admininclude.php';

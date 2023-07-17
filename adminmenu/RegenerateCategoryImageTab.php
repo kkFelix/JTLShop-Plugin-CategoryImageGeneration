@@ -17,7 +17,7 @@ class RegenerateCategoryImageTab
     public static function handleRequest(PluginInterface $plugin, DbInterface $db, JTLSmarty $smarty)
     {
         // TODO: handle invalid token
-        if (!empty($_POST) && Request::postVar('code') == 're-generate' && Form::validateToken()) {
+        if (!empty($_POST) && Request::postVar('code') === 're-generate' && Form::validateToken()) {
             self::regenerateCategoryImage($categoryId = Request::postInt('categoryId'));
         }
 
@@ -31,7 +31,7 @@ class RegenerateCategoryImageTab
             $categoryImageGenerationServiceInterface = Shop::Container()->get(CategoryImageGenerationServiceInterface::class);
             $categoryImageGenerationServiceInterface->generateCategoryImage($categoryId);
 
-            Shop::Cache()->flushTags(\CACHING_GROUP_CATEGORY);
+            Shop::Container()->getCache()->flushTags(\CACHING_GROUP_CATEGORY);
 
             Shop::Container()->getAlertService()->addAlert(Alert::TYPE_SUCCESS, __('admin.regenerate.common.success', $categoryId), 'succReGenerate');
         } catch (\Exception $e) {
